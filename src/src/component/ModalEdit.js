@@ -12,8 +12,8 @@ class ModalEdit extends React.Component {
     render() {
         return (
             <div className="modal-edit">
-                <input type="text" onChange={(e) => this.setState({title: e.target.value})} />
-                <textarea type="text" onChange={(e) => this.setState({text: e.target.value})}></textarea>
+                <input type="text" placeholder="Mini input..." onChange={(e) => this.setState({title: e.target.value})} />
+                <textarea type="text" placeholder="Mini input..." onChange={(e) => this.setState({text: e.target.value})}></textarea>
                 <div className="modal-buttons">
                     <button type="button" onClick={() => this.props.onCloseModal()}>Cancel</button>
                     <button type="button" onClick={() => {
@@ -21,9 +21,10 @@ class ModalEdit extends React.Component {
                             title: this.state.title,
                             text: this.state.text
                         }
-                        if (this.props.task)
-                            this.taskEdit.id = this.props.task.id
+                        if (this.props.onEditTaskId)
+                            this.taskEdit.id = this.props.onEditTaskId
                         this.props.onEditTask(this.taskEdit)
+                        this.props.onCloseModal()
                         }}>Save</button>
                 </div>
             </div>

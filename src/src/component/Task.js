@@ -17,10 +17,10 @@ class Task extends React.Component {
                         <p>{this.props.task.text}</p>
                     </div>
                     <div className="task-button">
-                        <button type="button" onClick={() => this.props.onDelete(this.props.task.id)}><span className="material-symbols-outlined">add</span></button>
+                        <button type="button" onClick={() => this.props.onModalDelete(this.props.task.id)}><span className="material-symbols-outlined">add</span></button>
                     </div>
                 </div>
-                {this.state.actionView && <TaskView onModalShare={this.props.onModalShare} onModalEdit={this.props.onModalEdit}/>}
+                {this.state.actionView && <TaskView task={this.props.task} taskId={this.props.task.id} onModalShare={this.props.onModalShare} onModalEdit={this.props.onModalEdit}/>}
             </div>
         )
     }

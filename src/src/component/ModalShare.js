@@ -1,37 +1,40 @@
 import React from "react";
-import Share_1 from "../icons/share_1.png"
-import Share_2 from "../icons/share_2.png"
-import Share_3 from "../icons/share_3.png"
-import Share_4 from "../icons/share_4.png"
-import Share_5 from "../icons/share_5.png"
+import copy from "../icons/copy.png"
+import vk from "../icons/vk.png"
+import telegram from "../icons/telegram.png"
+import whatsapp from "../icons/whatsapp.png"
+import facebook from "../icons/facebook.png"
 
 class ModalShare extends React.Component {
     render() {
         return (
             <div className="modal-share">
                 <div className="share-section">
-                    <button type="button">
-                        <img src={Share_1} alt="" />
+                    <button type="button" onClick={() => {
+                        navigator.clipboard.writeText([this.props.onShareTask.title, this.props.onShareTask.text])
+                        this.props.onCloseModal()
+                        }}>
+                        <img src={copy} alt="" />
                     </button>
                 </div>
                 <div className="share-section">
                     <button type="button">
-                        <img src={Share_2} alt="" />
+                        <img src={vk} alt="" />
                     </button>
                 </div>
                 <div className="share-section">
                     <button type="button">
-                        <img src={Share_3} alt="" />
+                        <img src={telegram} alt="" />
                     </button>
                 </div>
                 <div className="share-section">
                     <button type="button">
-                        <img src={Share_4} alt="" />
+                        <img src={whatsapp} alt="" />
                     </button>
                 </div>
                 <div className="share-section">
                     <button type="button">
-                        <img src={Share_5} alt="" />
+                        <img src={facebook} alt="" />
                     </button>
                 </div>
             </div>
