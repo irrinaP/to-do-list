@@ -1,31 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
-class AddTask extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            title: "",
-            text: ""
+const AddTask = ({ onAddTask }) => {
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+
+    const handleAddTask = () => {
+        if (onAddTask) {
+            onAddTask({ title, text });
         }
-    }
-    render() {
-        return (
-            <form ref={(el) => this.formAdd = el}>
-                <div className="header-inputs">
-                    <input type="text" placeholder="Title..." onChange={(e) => this.setState({title: e.target.value})} />
-                    <input type="text" placeholder="About..." onChange={(e) => this.setState({text: e.target.value})} />
-                </div>
-                <div className="header-buttons">
-                    <button type="button" onClick={() => {
-                        this.formAdd.reset()
-                        this.props.onAddTask({
-                            title: this.state.title, 
-                            text: this.state.text
-                    })}}><span className="material-symbols-outlined">add</span></button>
-                </div>
-            </form>
-        )
-    }
-}
+        setTitle(""); 
+        setText(""); 
+    };
 
-export default AddTask
+    return (
+        <form>
+            <div className="header-inputs">
+                <input 
+                    type="text" 
+                    placeholder="Title..." 
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)} 
+                />
+                <input 
+                    type="text" 
+                    placeholder="About..." 
+                    value={text}
+                    onChange={(e) => setText(e.target.value)} 
+                />
+            </div>
+            <div className="header-buttons">
+                <button 
+                    type="button" 
+                    onClick={handleAddTask}
+                >
+                    <span className="material-symbols-outlined">add</span>
+                </button>
+            </div>
+        </form>
+    );
+};
+
+export default AddTask;
